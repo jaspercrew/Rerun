@@ -53,3 +53,6 @@ UserSettings/
 # Unity quick search files
 Assets.index
 Assets.index.meta
+
+# Rider files
+.idea/
