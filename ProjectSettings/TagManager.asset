@@ -1,0 +1,64 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Regen
+  - Breakable
+  - Spawn
+  - RewindEffect
+  - GlobalLight
+  - Foreground
+  - LevelComplete
+  - Menu Canvas
+  - GravityPlatform
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - IgnoreLayerMask
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Background
+    uniqueID: 3574449913
+    locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Platforms
+    uniqueID: 3818718319
+    locked: 0
+  - name: Character
+    uniqueID: 973654467
+    locked: 0
+  - name: UI
+    uniqueID: 1990697419
+    locked: 0
