@@ -46,3 +46,10 @@ sysinfo.txt
 
 # Crashlytics generated file
 crashlytics-build.properties
+
+# Unity user settings
+UserSettings/
+
+# Unity quick search files
+Assets.index
+Assets.index.meta
