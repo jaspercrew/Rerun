@@ -1,34 +1,35 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     private SpriteRenderer _renderer;
-    // Start is ca lled before the first frame update
+
+    // Start is called before the first frame update
     private void Start() {
+        // TODO: what the fuck is this
         GameObject.FindGameObjectWithTag("Menu Canvas").layer = 5;
         _renderer = GameObject.FindGameObjectWithTag("Foreground").GetComponent<SpriteRenderer>();
 
     }
 
     // Update is called once per frame
-    private void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log("m1");
-            ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
-            UnityEditor.AssetDatabase.Refresh();
-        }
-        
-        if (Input.GetKeyDown("t"))
-        {
-            Debug.Log("t");
-            StartCoroutine(FindObjectOfType<SpawnScript>().SpawnCharacter());
-        }
-        
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(1))
+    //     {
+    //         Debug.Log("m1");
+    //         ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
+    //         UnityEditor.AssetDatabase.Refresh();
+    //     }
+    //     
+    //     if (Input.GetKeyDown("t"))
+    //     {
+    //         Debug.Log("t");
+    //         StartCoroutine(FindObjectOfType<SpawnScript>().SpawnCharacter());
+    //     }
+    //     
+    // }
     public void GamePause() {
         Time.timeScale = 0;
         _renderer.enabled = true;
@@ -58,6 +59,24 @@ public class GameManager : MonoBehaviour
         Application.Quit();
 #endif
     }
+
+    // Update is called once per frame
+    // private void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(1))
+    //     {
+    //         Debug.Log("m1");
+    //         ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
+    //         UnityEditor.AssetDatabase.Refresh();
+    //     }
+    //     
+    //     if (Input.GetKeyDown("t"))
+    //     {
+    //         Debug.Log("t");
+    //         StartCoroutine(FindObjectOfType<SpawnScript>().SpawnCharacter());
+    //     }
+    //     
+    // }
 
     public void LoadLevel(int i)
     {

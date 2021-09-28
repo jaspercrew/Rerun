@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -24,12 +25,12 @@ public class CharController: MonoBehaviour {
     public bool isMovementEnabled;
 
     // private RewindManager _rewindManager;
-    public float _xDir = 2;
+    public float xDir = 2;
 
 
-    private HashSet<Collider2D> colliding = new HashSet<Collider2D>();
+    private readonly HashSet<Collider2D> _colliding = new HashSet<Collider2D>();
 
-    public void CreateDust() => _dusts[1].Play();
+    private void CreateDust() => _dusts[1].Play();
 
     public void FinishDust() => _dusts[0].Play();
 
@@ -57,14 +58,12 @@ public class CharController: MonoBehaviour {
             transform.position += new Vector3(move * speed * Time.deltaTime, 0, 0);
         }
         
-        if (_xDir != move && IsGrounded() && move != 0) {
+        if (Math.Abs(xDir - move) > 0.01f && IsGrounded() && move != 0) {
             CreateDust();
         }
-        _xDir = move; 
         
-        
-        
-        
+        xDir = move;
+
         // if (isMovementEnabled) {
         //     float move = Input.GetAxis("Horizontal");
         //     transform.position += new Vector3(move * speed * Time.deltaTime, 0, 0);
@@ -74,13 +73,15 @@ public class CharController: MonoBehaviour {
 
     private bool IsGrounded()
     {
-        return colliding.Count > 0;
+        return _colliding.Count > 0;
         // int playerLayer = 9;
         // int layerMask = ~(1 << playerLayer);
         //
         //
-        // RaycastHit2D hit1 = Physics2D.Raycast(transform.position + Vector3.left * 0.44f, Vector3.down, .52f, layerMask);
-        // RaycastHit2D hit2 = Physics2D.Raycast(transform.position + Vector3.right * 0.44f, Vector3.down, .52f, layerMask);
+        // RaycastHit2D hit1 = Physics2D.Raycast(transform.position + Vector3.left * 0.44f, 
+        //     Vector3.down, .52f, layerMask);
+        // RaycastHit2D hit2 = Physics2D.Raycast(transform.position + Vector3.right * 0.44f, 
+        //     Vector3.down, .52f, layerMask);
         // Debug.Log(hit1.collider);
         //
         // return ((hit1.collider != null && !hit1.collider.isTrigger) || 
@@ -147,7 +148,7 @@ public class CharController: MonoBehaviour {
 
     private bool IsOnGravityPlatform()
     {
-        return colliding.Any(c => c.gameObject.CompareTag("GravityPlatform"));
+        return _colliding.Any(c => c.gameObject.CompareTag("GravityPlatform"));
     }
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -160,13 +161,13 @@ public class CharController: MonoBehaviour {
 
         if (!col.isTrigger && Abs(charX - colX) < Abs(colW) + Abs(charW) - 0.01f)
         {
-            colliding.Add(col);
+            _colliding.Add(col);
         }
     }
 
     private void OnCollisionExit2D(Collision2D other)
     {
-        colliding.Remove(other.collider);
+        _colliding.Remove(other.collider);
     }
 
     private static float Abs(float x)

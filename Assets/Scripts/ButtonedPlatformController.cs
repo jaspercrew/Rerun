@@ -3,7 +3,7 @@
 public class ButtonedPlatformController : MonoBehaviour
 {
     public bool isInitiallyActive = true;
-    private Color _groupColor = Constants.ButtonedColor; // default
+    private Color _groupColor = Constants.ButtonedColor; // default but can be changed in inspector
     private bool _isActive;
     private SpriteRenderer _sr;
     private BoxCollider2D _collider;
@@ -22,6 +22,7 @@ public class ButtonedPlatformController : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();
         
+        // hack to save a few lines of code
         _isActive = !isInitiallyActive;
         Toggle();
     }
