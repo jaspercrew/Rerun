@@ -1,31 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
 public class PostProcessingManager : MonoBehaviour {
-    private Volume _volume;
+    private FilmGrain _fg;
+    
     // Start is called before the first frame update
-    void Start() {
-        _volume = GetComponent<Volume>();
+    private void Start() {
+        Volume vol = GetComponent<Volume>();
+        if (!vol.TryGetComponent(out _fg))
+            Debug.LogError("CHARLIE BUG - no film grain found; continuing without film grain");
     }
 
     public void EnableFilmGrain() {
-        FilmGrain _fg;
-        _volume.profile.TryGet<FilmGrain>(out _fg);
         _fg.active = true;
     }
     
     public void DisableFilmGrain() {
-        FilmGrain _fg;
-        _volume.profile.TryGet<FilmGrain>(out _fg);
         _fg.active = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
