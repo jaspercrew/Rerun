@@ -8,7 +8,7 @@ public class PostProcessingManager : MonoBehaviour {
     // Start is called before the first frame update
     private void Start() {
         Volume vol = GetComponent<Volume>();
-        if (!vol.TryGetComponent(out _fg))
+        if (!vol.profile.TryGet(out _fg))
             Debug.LogError("CHARLIE BUG - no film grain found; continuing without film grain");
     }
 
