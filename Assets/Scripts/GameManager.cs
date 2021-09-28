@@ -32,4 +32,8 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(i);
     }
+    
+    public void RestartLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
 }
