@@ -1,22 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
+// TODO: do we need this
 public class FloatingAnimation : MonoBehaviour {
     public float amplitude;          //Set in Inspector 
     public float speed;                  //Set in Inspector 
-    private float tempVal;
-    private Vector3 tempPos;
-     
-    void Start () 
+    private float _startY;
+    private Vector3 _startPos;
+
+    private void Start () 
     {
-        tempPos = transform.position;
-        tempVal = transform.position.y;
+        _startPos = transform.position;
+        _startY = _startPos.y;
     }
- 
-    void Update () 
+
+    private void Update () 
     {        
-        tempPos.y = tempVal + amplitude * Mathf.Sin(speed * Time.time);
-        transform.position = tempPos;
+        _startPos.y = _startY + amplitude * Mathf.Sin(speed * Time.time);
+        transform.position = _startPos;
     }
 }
