@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6347472610820624039}
   - component: {fileID: 6347472610820624038}
   - component: {fileID: 6347472610820624037}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 6347472610918321995}
   - component: {fileID: 6347472610918321845}
   - component: {fileID: 6347472610918321844}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 6347472610932495816}
   - component: {fileID: 6347472610932495823}
   - component: {fileID: 6347472610932495822}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Restart Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -420,17 +420,6 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 0}
-        m_MethodName: RestartLevel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
         m_MethodName: GameResume
         m_Mode: 1
         m_Arguments:
@@ -452,7 +441,7 @@ GameObject:
   - component: {fileID: 6347472610983418413}
   - component: {fileID: 6347472610983418415}
   - component: {fileID: 6347472610983418414}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +576,7 @@ GameObject:
   - component: {fileID: 6347472611205048359}
   - component: {fileID: 6347472611205048353}
   - component: {fileID: 6347472611205048352}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +711,7 @@ GameObject:
   - component: {fileID: 6347472611285978157}
   - component: {fileID: 6347472611285978159}
   - component: {fileID: 6347472611285978158}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -856,7 +845,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6347472611416532299}
   - component: {fileID: 6347472611416532148}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: lvl_complete_white_border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,7 +927,7 @@ GameObject:
   - component: {fileID: 6347472611470997231}
   - component: {fileID: 6347472611470997225}
   - component: {fileID: 6347472611470997224}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1074,7 +1063,7 @@ GameObject:
   - component: {fileID: 6347472611554100243}
   - component: {fileID: 6347472611554100242}
   - component: {fileID: 6347472611554100241}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: MenuCanvas
   m_TagString: Menu Canvas
   m_Icon: {fileID: 0}
@@ -1172,7 +1161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6347472611725855177}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Level Complete
   m_TagString: LevelComplete
   m_Icon: {fileID: 0}
@@ -1211,7 +1200,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6347472611798017964}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: OptionsMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1253,7 +1242,7 @@ GameObject:
   - component: {fileID: 6347472611880526319}
   - component: {fileID: 6347472611880526318}
   - component: {fileID: 6347472611880526317}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1404,7 +1393,7 @@ GameObject:
   - component: {fileID: 6347472612061823088}
   - component: {fileID: 6347472612061823090}
   - component: {fileID: 6347472612061823089}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1540,7 +1529,7 @@ GameObject:
   - component: {fileID: 6347472612265050386}
   - component: {fileID: 6347472612265050385}
   - component: {fileID: 6347472612265050384}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Resume Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1701,7 +1690,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6347472612359626857}
   - component: {fileID: 6347472612359626858}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: pause_wht
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1716,7 +1705,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6347472612359626856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: -1995.5652}
   m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 6347472612527659742}
@@ -1784,7 +1773,7 @@ GameObject:
   - component: {fileID: 6347472612366563030}
   - component: {fileID: 6347472612366563029}
   - component: {fileID: 6347472612366563028}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1914,7 +1903,7 @@ GameObject:
   - component: {fileID: 6347472612491139535}
   - component: {fileID: 6347472612491139534}
   - component: {fileID: 6347472612491139533}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Next Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2044,7 +2033,7 @@ GameObject:
   - component: {fileID: 6347472612491772554}
   - component: {fileID: 6347472612491772553}
   - component: {fileID: 6347472612491772552}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2173,17 +2162,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: QuitGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &6347472612527659730
 GameObject:
   m_ObjectHideFlags: 0
@@ -2196,7 +2174,7 @@ GameObject:
   - component: {fileID: 6347472612527659741}
   - component: {fileID: 6347472612527659740}
   - component: {fileID: 6347472612527659731}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Pause Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2358,7 +2336,7 @@ GameObject:
   - component: {fileID: 6347472612531186933}
   - component: {fileID: 6347472612531186935}
   - component: {fileID: 6347472612531186934}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Text (Back)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
