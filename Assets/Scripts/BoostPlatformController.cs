@@ -8,7 +8,7 @@ public class BoostPlatformController : MonoBehaviour
     public int _cardinalDir = 0;
     private SpriteRenderer _renderer;
     private BoxCollider2D _collider;
-    private float boostForce = 25f;
+    private float boostForce = 20f;
     // Start is called before the first frame update
     void Start()
     {
