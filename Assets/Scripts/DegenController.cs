@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using UnityEditor;
 using UnityEngine;
 
 public class DegenController : MonoBehaviour
@@ -54,10 +53,17 @@ public class DegenController : MonoBehaviour
         // }
         _state = DegenState.Breaking;
         
-        GameObject tempYellow = new GameObject("tempDegen");
-        tempYellow.transform.position = this.transform.position;
-        tempYellow.transform.position += Vector3.forward; // push into screen
-        tempYellow.transform.localScale = this.transform.localScale;
+        GameObject tempYellow = new GameObject("tempDegen")
+        {
+            transform =
+            {
+                position = transform.position + Vector3.forward,
+                localScale = transform.localScale
+            }
+        };
+        // tempYellow.transform.position = this.transform.position;
+        // tempYellow.transform.position += Vector3.forward; // push into screen
+        // tempYellow.transform.localScale = this.transform.localScale;
         SpriteRenderer sr = tempYellow.AddComponent<SpriteRenderer>();
         
         UnityEditorInternal.ComponentUtility.CopyComponent(this.GetComponent<SpriteRenderer>());

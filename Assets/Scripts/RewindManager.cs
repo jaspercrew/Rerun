@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class RewindManager : MonoBehaviour {
     private GameObject _character;
     private Transform _charTransform;
 
-    private GameObject _spawn;
+    // private GameObject _spawn;
     private SpriteRenderer _rewindEffect;
     private SpriteRenderer _fore;
     private PostProcessingManager _ppm;
@@ -16,21 +14,21 @@ public class RewindManager : MonoBehaviour {
     private Rigidbody2D _rigidbody;
     private BoxCollider2D _collider;
 
-    public bool isRewinding = false;
-    public bool isCompleting = false;
+    public bool isRewinding;
+    public bool isCompleting;
     //public bool isDelayedRewinding = false;
     
-    private List<PointInTime> pointsInTime;
+    private List<PointInTime> _pointsInTime;
     
-    private Vector3 vel = Vector3.zero;
-    private RectTransform lct;
+    private Vector3 _vel = Vector3.zero;
+    private RectTransform _levelComplete;
 
     private void Awake() {
         _character = GameObject.FindGameObjectWithTag("Player");
         _charTransform = _character.transform;
-        _ppm = GameObject.FindObjectOfType<PostProcessingManager>();
-        _spawn = GameObject.FindGameObjectWithTag("Spawn");
-        pointsInTime = new List<PointInTime>();
+        _ppm = FindObjectOfType<PostProcessingManager>();
+        // _spawn = GameObject.FindGameObjectWithTag("Spawn");
+        _pointsInTime = new List<PointInTime>();
         _rigidbody = _character.GetComponent<Rigidbody2D>();
         _collider = _character.GetComponent<BoxCollider2D>();
         _rewindEffect = GameObject.FindGameObjectWithTag("RewindEffect").GetComponent<SpriteRenderer>();
@@ -38,7 +36,7 @@ public class RewindManager : MonoBehaviour {
         _fore = GameObject.FindGameObjectWithTag("Foreground").GetComponent<SpriteRenderer>();
         _fore.enabled = false;
         
-        lct = GameObject.FindGameObjectWithTag("LevelComplete")
+        _levelComplete = GameObject.FindGameObjectWithTag("LevelComplete")
             .GetComponent<RectTransform>();
     }
     
@@ -48,7 +46,7 @@ public class RewindManager : MonoBehaviour {
         _character.GetComponent<Rigidbody2D>().velocity += 
             Vector2.right * Input.GetAxisRaw("Horizontal") * _character.GetComponent<CharController>().speed;
         
-        FindObjectOfType<AudioManager>().Play("Slow");
+        AudioManager.Instance.Play("Slow");
         _character.GetComponent<CharController>().isMovementEnabled = false;
         float timer = 0;
         while (timer < delayTime - 0.001f)
@@ -78,7 +76,7 @@ public class RewindManager : MonoBehaviour {
         
         _character.GetComponent<BoxCollider2D>().enabled = false;
         _character.GetComponent<CharController>().FinishDust();
-        FindObjectOfType<AudioManager>().Play("Slow");
+        AudioManager.Instance.Play("Slow");
         _character.GetComponent<CharController>().isMovementEnabled = false;
         
         SpriteRenderer sr = _character.GetComponent<SpriteRenderer>();
@@ -96,7 +94,7 @@ public class RewindManager : MonoBehaviour {
             timer += Time.deltaTime;
             yield return null;
         }
-        FindObjectOfType<AudioManager>().Play("Level Complete");
+        AudioManager.Instance.Play("Level Complete");
         Time.timeScale = 1f;
         Time.fixedDeltaTime = 0.02F;
         // Debug.Log("starting animation");
@@ -104,9 +102,9 @@ public class RewindManager : MonoBehaviour {
         // lc.SetActive(true);
         // LevelComplete(0.5f);
     }
-    
-    public void StartRewind() {
-        FindObjectOfType<AudioManager>().Play("Rewind");
+
+    private void StartRewind() {
+        AudioManager.Instance.Play("Rewind");
         _rigidbody.velocity = Vector3.zero; //diving fix
         
         _ppm.EnableFilmGrain();
@@ -114,14 +112,14 @@ public class RewindManager : MonoBehaviour {
         _rewindEffect.enabled = true;
         _fore.enabled = true;
         
-        Time.timeScale = pointsInTime.Count * Time.fixedDeltaTime / Constants.RewindTime;
+        Time.timeScale = _pointsInTime.Count * Time.fixedDeltaTime / Constants.RewindTime;
         //x second flat time for rewind effect
         isRewinding = true;
         _rigidbody.isKinematic = true;
     }
-    
 
-    public void StopRewind() {
+
+    private void StopRewind() {
         _character.GetComponent<CharController>().isMovementEnabled = true;
         
         
@@ -145,37 +143,38 @@ public class RewindManager : MonoBehaviour {
 
         if (isCompleting)
         {
-            lct.position = Vector3.SmoothDamp(lct.position, 
-                Vector3.zero, ref vel, 0.5f);
+            _levelComplete.position = Vector3.SmoothDamp(_levelComplete.position, 
+                Vector3.zero, ref _vel, 0.5f);
 
-            if (lct.position == Vector3.zero)
+            if (_levelComplete.position == Vector3.zero)
                 isCompleting = false;
         }
     }
-    
-    void Record()
+
+    private void Record()
     {
-        if (pointsInTime.Count == 0)
+        // TODO: use just positions, no rotations
+        if (_pointsInTime.Count == 0)
         {
-            pointsInTime.Insert(0, 
+            _pointsInTime.Insert(0, 
                 new PointInTime(_charTransform.position, _charTransform.rotation));
             return;
         }
-        PointInTime last = pointsInTime[0];
-        if (last.position != _charTransform.position || last.rotation != _charTransform.rotation)
+        PointInTime last = _pointsInTime[0];
+        if (last.Position != _charTransform.position || last.Rotation != _charTransform.rotation)
         {
-            pointsInTime.Insert(0, 
+            _pointsInTime.Insert(0, 
                 new PointInTime(_charTransform.position, _charTransform.rotation));
         }
 
     }
 
     private void Rewind() {
-        if (pointsInTime.Count > 0) {
-            PointInTime pointInTime = pointsInTime[0];
-            _charTransform.position = pointInTime.position;
-            _charTransform.rotation = pointInTime.rotation;
-            pointsInTime.RemoveAt(0);
+        if (_pointsInTime.Count > 0) {
+            PointInTime pointInTime = _pointsInTime[0];
+            _charTransform.position = pointInTime.Position;
+            _charTransform.rotation = pointInTime.Rotation;
+            _pointsInTime.RemoveAt(0);
         }
         else {
             StopRewind();

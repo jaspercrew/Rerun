@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class RegenController : MonoBehaviour
@@ -10,7 +7,7 @@ public class RegenController : MonoBehaviour
     private BoxCollider2D _collider;
     
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();

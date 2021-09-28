@@ -1,8 +1,5 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Video;
 
 public class PortalController : MonoBehaviour
 {
@@ -27,8 +24,13 @@ public class PortalController : MonoBehaviour
         //         .GetComponent<SpriteRenderer>();
         //_rewindEffect.enabled = false;
 
-        _coinsParent = new GameObject("stars");
-        _coinsParent.transform.parent = this.transform;
+        _coinsParent = new GameObject("stars")
+        {
+            transform =
+            {
+                parent = transform
+            }
+        };
         PlaceStars();
     }
 
@@ -54,8 +56,10 @@ public class PortalController : MonoBehaviour
     {
         float t = ((Time.time % coinLoopTime) / coinLoopTime + (float) i / _coins.Length) 
                   * 2f * Mathf.PI;
-        float x = this.transform.position.x + this.transform.localScale.x * Mathf.Sin(t);
-        float y = this.transform.position.y + this.transform.localScale.y * Mathf.Cos(t);
+        var sca = transform.localScale;
+        var pos = transform.position;
+        float x = pos.x + sca.x * Mathf.Sin(t);
+        float y = pos.y + sca.y * Mathf.Cos(t);
         return new Vector2(x, y);
     }
 
@@ -91,25 +95,14 @@ public class PortalController : MonoBehaviour
         // player reached portal
         _runsLeft--;
 
-        if (_runsLeft > 0) {
-            
-            //FindObjectOfType<AudioManager>().Play("Rewind");
-            StartCoroutine(
-                _player.GetComponent<RewindManager>().DelayedRewind(.18f));
-            
-            //_player.GetComponent<RewindManager>().StartRewind();
-        }
-        else {
-            // no more runs, go to next level
-            StartCoroutine(_player.GetComponent<RewindManager>().Disappear(.18f));
-            
-            // BeginNextLevel();
-        }
+        StartCoroutine(_runsLeft > 0 ?
+                _player.GetComponent<RewindManager>().DelayedRewind(.18f) :
+                _player.GetComponent<RewindManager>().Disappear(.18f));
 
         PlaceStars();
     }
 
-    private static void BeginNextLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
+    // private static void BeginNextLevel() {
+    //     SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    // }
 }

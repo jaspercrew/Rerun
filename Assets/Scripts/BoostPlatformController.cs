@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class BoostPlatformController : MonoBehaviour
 {
-    public int _cardinalDir = 0;
+    [Header("0 = up, 1 = left, 2 = down, 3 = right")]
+    [Range(0, 3)]
+    public int cardinalDir;
     private SpriteRenderer _renderer;
     private BoxCollider2D _collider;
-    private float boostForce = 20f;
+    private const float BoostForce = 20f;
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         _renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();
@@ -20,42 +20,42 @@ public class BoostPlatformController : MonoBehaviour
         _renderer.color = c;
         // turn on collision
         _collider.isTrigger = false;
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D other)
     {
-        
-    }
+        if (!other.collider.CompareTag("Player")) return;
 
-    private void OnCollisionEnter2D(Collision2D other) {
-        if (other.collider.CompareTag("Player")) {
-            switch (_cardinalDir) {
-                case 0:
-                    other.collider.attachedRigidbody.AddForce(new Vector2(0, boostForce), ForceMode2D.Impulse);
-                    break;
-                case 1:
-                    other.collider.attachedRigidbody.AddForce(new Vector2(boostForce, 0), ForceMode2D.Impulse);
-                    break;
-                case 2:
-                    other.collider.attachedRigidbody.AddForce(new Vector2(0, -boostForce), ForceMode2D.Impulse);
-                    break;
-                case 3:
-                    other.collider.attachedRigidbody.AddForce(new Vector2(-boostForce, 0), ForceMode2D.Impulse);
-                    break;
-                default:
-                    Debug.Log("invalid cardinal direction for boosts");
-                    break;
+        Vector2[] dirs = {Vector2.up, Vector2.right, Vector2.down, Vector2.left};
+        Vector2 dir = BoostForce * dirs[cardinalDir];
+        other.collider.attachedRigidbody.AddForce(dir, ForceMode2D.Impulse);
 
-            }
+        // shorter version of this is above
+        // switch (cardinalDir) {
+        //     case 0:
+        //         other.collider.attachedRigidbody.AddForce(new Vector2(0, BoostForce), ForceMode2D.Impulse);
+        //         break;
+        //     case 1:
+        //         other.collider.attachedRigidbody.AddForce(new Vector2(BoostForce, 0), ForceMode2D.Impulse);
+        //         break;
+        //     case 2:
+        //         other.collider.attachedRigidbody.AddForce(new Vector2(0, -BoostForce), ForceMode2D.Impulse);
+        //         break;
+        //     case 3:
+        //         other.collider.attachedRigidbody.AddForce(new Vector2(-BoostForce, 0), ForceMode2D.Impulse);
+        //         break;
+        //     default:
+        //         Debug.Log("invalid cardinal direction for boosts");
+        //         break;
+        //
+        // }
             
             
-            Color c = Constants.BoostColor;
-            c.a = Constants.DisabledOpacity;
-            _renderer.color = c;
-            // turn off collision
-            _collider.isTrigger = true;
-        }
+        Color c = Constants.BoostColor;
+        c.a = Constants.DisabledOpacity;
+        _renderer.color = c;
+        // turn off collision
+        _collider.isTrigger = true;
     }
+    
 }

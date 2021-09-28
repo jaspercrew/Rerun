@@ -1,24 +1,23 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 
 public class LinkedController : MonoBehaviour
 {
     private SpriteRenderer _renderer;
     private BoxCollider2D _collider;
+    private ShadowCaster2D _shadow;
     public bool isBreakable;
+    
+    // TODO: store this in the parent, not every single child
     private LinkedController[] _links;
     
     // Start is called before the first frame update
-    void Start() {
+    private void Start() {
         _links = transform.parent.GetComponentsInChildren<LinkedController>();
         
         _renderer = GetComponent<SpriteRenderer>();
         _collider = GetComponent<BoxCollider2D>();
-
-
+        _shadow = GetComponent<ShadowCaster2D>();
 
         if (isBreakable) {
             // set color full
@@ -27,7 +26,7 @@ public class LinkedController : MonoBehaviour
             _renderer.color = c;
             // turn on collision
             _collider.isTrigger = false;
-            GetComponent<ShadowCaster2D>().castsShadows = true;
+            _shadow.castsShadows = true;
         }
         else {
             // set color faded
@@ -47,7 +46,7 @@ public class LinkedController : MonoBehaviour
                 l._renderer.color = c;
                 // turn on collision
                 l._collider.isTrigger = true;
-                l.GetComponent<ShadowCaster2D>().castsShadows = false;
+                l._shadow.castsShadows = false;
             }
             else {
                 // set color full
@@ -56,7 +55,7 @@ public class LinkedController : MonoBehaviour
                 l._renderer.color = c;
                 // turn on collision
                 l._collider.isTrigger = false;
-                l.GetComponent<ShadowCaster2D>().castsShadows = true;
+                l._shadow.castsShadows = true;
                 
             }
 
@@ -68,7 +67,7 @@ public class LinkedController : MonoBehaviour
         InvertLinks();
     }
     
-    private void OnCollisionExit2D(Collision2D other) {
+    private void OnCollisionExit2D() {
         InvertLinks();
     }
     

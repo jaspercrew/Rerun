@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections;
 using UnityEngine;
 
+// TODO: do we need this
 public class SpawnScript : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -11,8 +9,8 @@ public class SpawnScript : MonoBehaviour
     private GameObject _character;
     private CharController _charController;
 
-    public PhysicsMaterial2D _spawnMat;
-    public PhysicsMaterial2D _charMat;
+    public PhysicsMaterial2D spawnMat;
+    public PhysicsMaterial2D charMat;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -32,7 +30,7 @@ public class SpawnScript : MonoBehaviour
     public IEnumerator SpawnCharacter() {
         isSpawning = true;
         _charController.isMovementEnabled = false;
-        _rigidbody2D.sharedMaterial = _spawnMat;
+        _rigidbody2D.sharedMaterial = spawnMat;
 
         //Debug.Log("spawn run");
         //Debug.Log(_portal.name);
@@ -49,20 +47,12 @@ public class SpawnScript : MonoBehaviour
         
         _portal.transform.localScale = new Vector3(0, 0, 0); //requires smoothing(aviv) 
         _portal.SetActive(false); 
-        _rigidbody2D.sharedMaterial = _charMat; 
+        _rigidbody2D.sharedMaterial = charMat; 
         _charController.isMovementEnabled = true;
         _rigidbody2D.velocity = Vector3.zero;
         isSpawning = false;
 
         yield return null;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
-        
     }
 
 
