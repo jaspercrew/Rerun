@@ -51,6 +51,7 @@ public class CharController: MonoBehaviour {
         //Vector2 move = new Vector2(Input.GetAxis("Horizontal"), 0f);
         //_rigidbody.MovePosition((Vector2)transform.position + (move * (speed * Time.deltaTime)));
         //Debug.Log(IsGrounded());
+        //Debug.Log(_colliding.Count);
 
         float move = Input.GetAxisRaw("Horizontal");
         if (isMovementEnabled)
@@ -159,7 +160,7 @@ public class CharController: MonoBehaviour {
         float colW = col.bounds.extents.x;
         float charW = _collider.bounds.extents.x;
 
-        if (!col.isTrigger && Abs(charX - colX) < Abs(colW) + Abs(charW) - 0.01f)
+        if (!col.isTrigger && Abs(charX - colX) < Abs(colW) + Abs(charW) - 0.01f && !col.CompareTag("Boost Platform"))
         {
             _colliding.Add(col);
         }
@@ -167,6 +168,7 @@ public class CharController: MonoBehaviour {
 
     private void OnCollisionExit2D(Collision2D other)
     {
+        Debug.Log("amongus");
         _colliding.Remove(other.collider);
     }
 

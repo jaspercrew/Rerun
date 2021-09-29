@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 694700789176784483}
   m_Layer: 0
   m_Name: BoostPlatform
-  m_TagString: Untagged
+  m_TagString: Boost Platform
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -168,7 +168,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1033496666, guid: eee13667412c3204189f3d7bd1120892, type: 3}
       propertyPath: m_InstanceId
-      value: -369400
+      value: -713886
       objectReference: {fileID: 0}
     - target: {fileID: 4213634239003024600, guid: eee13667412c3204189f3d7bd1120892,
         type: 3}
@@ -261,7 +261,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1033496666, guid: eee13667412c3204189f3d7bd1120892, type: 3}
       propertyPath: m_InstanceId
-      value: -369408
+      value: -713894
       objectReference: {fileID: 0}
     - target: {fileID: 4213634239003024600, guid: eee13667412c3204189f3d7bd1120892,
         type: 3}
