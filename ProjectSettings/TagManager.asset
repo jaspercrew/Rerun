@@ -13,6 +13,8 @@ TagManager:
   - LevelComplete
   - Menu Canvas
   - GravityPlatform
+  - Boost Platform
+  - No Ground
   layers:
   - Default
   - TransparentFX
