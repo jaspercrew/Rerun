@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PortalPlatformController : MonoBehaviour {
     private const float BoostVelocity = .5f;
+    private const float maxVel = 50f;
+    private const float minVel = 10f;
     private Transform _otherPortalTransform;
     [Range(0, 3)] public int cardinalDir;
 
@@ -32,7 +34,7 @@ public class PortalPlatformController : MonoBehaviour {
             case 0: //up - TODO: needs fix when entering from stood up portal
                 charTransform.position = _otherPortalTransform.position + new Vector3(0, 1, 0);
                 other.attachedRigidbody.velocity = 
-                    new Vector2(0,Math.Max(BoostVelocity + Math.Abs(inVel.y), 10f)); 
+                    new Vector2(0,Math.Min(Math.Max(BoostVelocity + Math.Abs(inVel.y), minVel), maxVel)); 
                 break;
             case 1: //right
                 charTransform.position = _otherPortalTransform.position + new Vector3(1, 0, 0);
@@ -41,7 +43,7 @@ public class PortalPlatformController : MonoBehaviour {
             case 2: //down - TODO: needs fix when entering from stood up portal
                 charTransform.position = _otherPortalTransform.position + new Vector3(0, -1, 0);
                 other.attachedRigidbody.velocity = 
-                    new Vector2(0,Math.Min(-(BoostVelocity + Math.Abs(inVel.y)), -10f)); 
+                    new Vector2(0,Math.Max(Math.Min(-(BoostVelocity + Math.Abs(inVel.y)), -minVel), -maxVel)); 
                 break;
             case 3: //left
                 charTransform.position = _otherPortalTransform.position + new Vector3(-1, 0, 0);
