@@ -6,6 +6,7 @@ public class PortalController : MonoBehaviour
     [Min(1)] public int numReruns = 1;
     public GameObject coinPrefab;
     public float coinLoopTime = 5;
+    private float _reciprocalLoopTime;
 
     private int _runsLeft;
     // private GameObject _spawn;
@@ -13,10 +14,14 @@ public class PortalController : MonoBehaviour
 
     private GameObject _coinsParent;
     private GameObject[] _coins;
+
+    private float _reciprocalCoinsLen;
     //private SpriteRenderer _rewindEffect;
 
     private void Awake() {
         _player = GameObject.FindGameObjectWithTag("Player");
+        _reciprocalLoopTime = 1f / coinLoopTime;
+        // _reciprocalCoinsLen = (_coins.Length == 0)? -1 : 1 / _coins.Length;
         
         _runsLeft = numReruns;
         // _spawn = GameObject.FindGameObjectWithTag("Spawn");
@@ -42,25 +47,24 @@ public class PortalController : MonoBehaviour
         }
 
         _coins = new GameObject[_runsLeft];
+        _reciprocalCoinsLen = 1f / _runsLeft;
 
         for (int i = 0; i < _coins.Length; i++)
         {
-            GameObject c = Instantiate(coinPrefab, 
-                _coinsParent.transform, true);
-            _coins[i] = c;
+            _coins[i] = Instantiate(coinPrefab, _coinsParent.transform, true);
             // c.transform.position = CoinPos(i);
         }
     }
     
-    private Vector2 CoinPos(int i)
+    private Vector3 CoinPos(int i)
     {
-        float t = ((Time.time % coinLoopTime) / coinLoopTime + (float) i / _coins.Length) 
+        float t = ((Time.time * _reciprocalLoopTime) % 1 + i * _reciprocalCoinsLen) 
                   * 2f * Mathf.PI;
-        var sca = transform.localScale;
-        var pos = transform.position;
+        Vector3 sca = transform.localScale;
+        Vector3 pos = transform.position;
         float x = pos.x + sca.x * Mathf.Sin(t);
         float y = pos.y + sca.y * Mathf.Cos(t);
-        return new Vector2(x, y);
+        return new Vector3(x, y, pos.z);
     }
 
 

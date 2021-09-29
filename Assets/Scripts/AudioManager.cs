@@ -7,7 +7,6 @@ public class AudioManager : MonoBehaviour
 
     // public AudioMixerGroup mixerGroup;
 
-    // TODO: just use AudioClip
     public Sound[] sounds;
 
     private void Awake()
@@ -34,7 +33,7 @@ public class AudioManager : MonoBehaviour
 
     public void Play(string sound)
     {
-        // TODO: use a hash map
+        // we should probably use a hash map here but there's only three sounds so it's fine
         Sound s = Array.Find(sounds, item => item.name == sound);
         if (s == null)
         {
