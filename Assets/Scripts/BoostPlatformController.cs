@@ -2,12 +2,12 @@
 
 public class BoostPlatformController : MonoBehaviour
 {
-    [Header("0 = up, 1 = left, 2 = down, 3 = right")]
+    [Header("0 = up, 1 = right, 2 = down, 3 = left")]
     [Range(0, 3)]
     public int cardinalDir;
     private SpriteRenderer _renderer;
     private BoxCollider2D _collider;
-    private const float BoostForce = 20f;
+    private const float BoostForce = 27f;
 
     // Start is called before the first frame update
     private void Start()
