@@ -42,6 +42,9 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
+        s.source.volume = s.volume;
+        s.source.pitch = s.pitch;
+
         // these are 0 anyway
         // s.source.volume = 
         //     s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
