@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-// TODO: do we need this
 public class CameraFollow : MonoBehaviour
 {
     public Transform cameraTarget;

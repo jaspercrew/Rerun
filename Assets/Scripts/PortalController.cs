@@ -8,7 +8,7 @@ public class PortalController : MonoBehaviour
     public float coinLoopTime = 5;
 
     private int _runsLeft;
-    private GameObject _spawn;
+    // private GameObject _spawn;
     private GameObject _player;
 
     private GameObject _coinsParent;
@@ -19,12 +19,12 @@ public class PortalController : MonoBehaviour
         _player = GameObject.FindGameObjectWithTag("Player");
         
         _runsLeft = numReruns;
-        _spawn = GameObject.FindGameObjectWithTag("Spawn");
+        // _spawn = GameObject.FindGameObjectWithTag("Spawn");
         // _rewindEffect = GameObject.FindGameObjectWithTag("RewindEffect")
         //         .GetComponent<SpriteRenderer>();
         //_rewindEffect.enabled = false;
 
-        _coinsParent = new GameObject("stars")
+        _coinsParent = new GameObject("Stars")
         {
             transform =
             {
@@ -65,13 +65,13 @@ public class PortalController : MonoBehaviour
 
 
     // Start is called before the first frame update
-    private void Start()
-    {
-        if (_spawn == null)
-        {
-            Debug.LogError("couldn't find spawn object!");
-        }
-    }
+    // private void Start()
+    // {
+    //     if (_spawn == null)
+    //     {
+    //         Debug.LogError("couldn't find spawn object!");
+    //     }
+    // }
     
     
     private void Update()

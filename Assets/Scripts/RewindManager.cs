@@ -153,7 +153,6 @@ public class RewindManager : MonoBehaviour {
 
     private void Record()
     {
-        // TODO: use just positions, no rotations
         if (_pointsInTime.Count == 0)
         {
             _pointsInTime.Insert(0, 

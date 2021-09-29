@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 
     // Start is called before the first frame update
     private void Start() {
-        // TODO: what the fuck is this
-        GameObject.FindGameObjectWithTag("Menu Canvas").layer = 5;
         _renderer = GameObject.FindGameObjectWithTag("Foreground").GetComponent<SpriteRenderer>();
 
     }
