@@ -55,7 +55,7 @@ public class CharController: MonoBehaviour {
         //Debug.Log(_colliding.Count);
 
         float move = Input.GetAxisRaw("Horizontal");
-        if (isMovementEnabled)
+        if (isMovementEnabled && (_rigidbody.velocity.x == 0 || IsGrounded()))
         {
             transform.position += new Vector3(move * speed * Time.deltaTime, 0, 0);
         }
