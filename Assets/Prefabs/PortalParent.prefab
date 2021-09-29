@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 2264292615495268353}
   m_Layer: 0
   m_Name: PortalPlatform1
-  m_TagString: Untagged
+  m_TagString: No Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d97cb0607b81b1489dc8fab3f9e9515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardinalDir: 0
+  cardinalDir: 0
 --- !u!1 &2264292616278053565
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 2264292616457289911}
   m_Layer: 0
   m_Name: PortalPlatform2
-  m_TagString: Untagged
+  m_TagString: No Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d97cb0607b81b1489dc8fab3f9e9515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cardinalDir: 0
+  cardinalDir: 0
 --- !u!1001 &2264292616151236333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1033496666, guid: eee13667412c3204189f3d7bd1120892, type: 3}
       propertyPath: m_InstanceId
-      value: -1476
+      value: -730094
       objectReference: {fileID: 0}
     - target: {fileID: 4213634239003024600, guid: eee13667412c3204189f3d7bd1120892,
         type: 3}
@@ -463,7 +463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1033496666, guid: eee13667412c3204189f3d7bd1120892, type: 3}
       propertyPath: m_InstanceId
-      value: -1484
+      value: -730102
       objectReference: {fileID: 0}
     - target: {fileID: 4213634239003024600, guid: eee13667412c3204189f3d7bd1120892,
         type: 3}
@@ -571,7 +571,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1033496666, guid: eee13667412c3204189f3d7bd1120892, type: 3}
       propertyPath: m_InstanceId
-      value: -1482
+      value: -730110
       objectReference: {fileID: 0}
     - target: {fileID: 4213634239003024600, guid: eee13667412c3204189f3d7bd1120892,
         type: 3}
@@ -679,7 +679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1033496666, guid: eee13667412c3204189f3d7bd1120892, type: 3}
       propertyPath: m_InstanceId
-      value: -1478
+      value: -730118
       objectReference: {fileID: 0}
     - target: {fileID: 4213634239003024600, guid: eee13667412c3204189f3d7bd1120892,
         type: 3}

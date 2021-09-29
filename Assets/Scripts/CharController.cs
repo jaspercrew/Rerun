@@ -160,7 +160,7 @@ public class CharController: MonoBehaviour {
         float colW = col.bounds.extents.x;
         float charW = _collider.bounds.extents.x;
 
-        if (!col.isTrigger && Abs(charX - colX) < Abs(colW) + Abs(charW) - 0.01f && !col.CompareTag("Boost Platform"))
+        if (!col.isTrigger && Abs(charX - colX) < Abs(colW) + Abs(charW) - 0.01f && !col.CompareTag("No Ground"))
         {
             _colliding.Add(col);
         }
