@@ -6,7 +6,6 @@ using UnityEngine;
 
 public static class SaveScript {
     
-    // TODO: settings (sound, etc)
     private const int NumWorlds = 8;
     private const int LevelsPerWorld = 4;
 
@@ -26,20 +25,25 @@ public static class SaveScript {
             _saveProgress[i] = new bool[LevelsPerWorld];
         }
 
+        Debug.Log("loading save and settings");
         Load();
     }
 
     public static void Save() {
+        // TODO: compare file sizes when saving via serialization vs. plain text
+        
         FileStream file = File.Create(SaveLocation); 
         _bf.Serialize(file, _saveProgress);
         file.Close();
+        Debug.Log("saved level completion data to " + SaveLocation);
         
         file = File.Create(SettingsLocation); 
         _bf.Serialize(file, _settings);
         file.Close();
+        Debug.Log("saved settings data to " + SettingsLocation);
     }
 
-    private static void Load()
+    public static void Load()
     {
         if (File.Exists(SaveLocation))
         {
@@ -48,7 +52,7 @@ public static class SaveScript {
             file.Close();
         }
         
-        if (!File.Exists(SettingsLocation))
+        if (File.Exists(SettingsLocation))
         {
             FileStream file = File.Open(SettingsLocation, FileMode.Open);
             _settings = (float[]) _bf.Deserialize(file);
