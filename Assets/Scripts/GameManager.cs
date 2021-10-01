@@ -6,8 +6,12 @@ public class GameManager : MonoBehaviour
     private SpriteRenderer _renderer;
 
     // Start is called before the first frame update
-    private void Start() {
-        _renderer = GameObject.FindGameObjectWithTag("Foreground").GetComponent<SpriteRenderer>();
+    private void Start()
+    {
+        GameObject fg = GameObject.FindGameObjectWithTag("Foreground");
+        _renderer = fg ? fg.GetComponent<SpriteRenderer>() : null;
+        
+        SaveScript.Load();
 
     }
 
@@ -17,7 +21,9 @@ public class GameManager : MonoBehaviour
     //     if (Input.GetMouseButtonDown(1))
     //     {
     //         Debug.Log("m1");
-    //         ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
+    //         ScreenCapture.CaptureScreenshot(Application.dataPath + 
+    //                                         "/screenshots/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")
+    //                                         + ".png");
     //         UnityEditor.AssetDatabase.Refresh();
     //     }
     //     
@@ -30,12 +36,14 @@ public class GameManager : MonoBehaviour
     // }
     public void GamePause() {
         Time.timeScale = 0;
-        _renderer.enabled = true;
+        if (_renderer)
+            _renderer.enabled = true;
     }
 
     public void GameResume() {
         Time.timeScale = 1;
-        _renderer.enabled = false;
+        if (_renderer)
+            _renderer.enabled = false;
     }
 
     public void LoadMainMenu() {
@@ -58,24 +66,6 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    // Update is called once per frame
-    // private void Update()
-    // {
-    //     if (Input.GetMouseButtonDown(1))
-    //     {
-    //         Debug.Log("m1");
-    //         ScreenCapture.CaptureScreenshot(Application.dataPath + "/screenshots/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + ".png");
-    //         UnityEditor.AssetDatabase.Refresh();
-    //     }
-    //     
-    //     if (Input.GetKeyDown("t"))
-    //     {
-    //         Debug.Log("t");
-    //         StartCoroutine(FindObjectOfType<SpawnScript>().SpawnCharacter());
-    //     }
-    //     
-    // }
-
     public void LoadLevel(int i)
     {
         SceneManager.LoadScene(i);
@@ -83,5 +73,10 @@ public class GameManager : MonoBehaviour
     
     public void RestartLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void SaveGameAndSettings()
+    {
+        SaveScript.Save();
     }
 }
