@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class Constants
 {
-        public const int NumWorlds = 8;
+        public const int NumWorlds = 7;
         public const int LevelsPerWorld = 4;
         
         public const float DisabledOpacity = 0.2f;

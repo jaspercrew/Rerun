@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public static class SaveScript {
     
@@ -19,7 +18,17 @@ public static class SaveScript {
     {
         for (int i = 0; i < _saveProgress.Length; i++)
         {
-            _saveProgress[i] = new bool[Constants.LevelsPerWorld];
+            int len = Constants.LevelsPerWorld;
+
+            while (!LevelSceneExists(i + 1, len) && len > 0)
+            {
+                // Debug.Log("decreasing to length " + (len - 1) + " for chapter " + (i + 1));
+                len--;
+            }
+            
+            // Debug.Log("chapter " + (i + 1) + " has " + len + " levels");
+            
+            _saveProgress[i] = new bool[len];
         }
 
         Debug.Log("loading save and settings");
@@ -64,7 +73,13 @@ public static class SaveScript {
 
     public static bool IsLevelComplete(int world, int level)
     {
-        return _saveProgress[world][level];
+        if (world < 0 || world >= _saveProgress.Length)
+            return false;
+        
+        if (level < 0)
+            level += _saveProgress[world].Length;
+
+        return LevelExists(world, level) && _saveProgress[world][level];
     }
 
     public static void UpdateSettings(float sound, float music)
@@ -76,4 +91,17 @@ public static class SaveScript {
     public static float GetSound() => _settings[0];
     
     public static float GetMusic() => _settings[1];
+    
+    private static bool LevelSceneExists(int worldNum, int levelNum)
+    {
+        // this is kinda sketch but it's the only way i could find
+        return SceneUtility.GetBuildIndexByScenePath(
+            "Assets/Scenes/Level " + worldNum + "-" + levelNum + ".unity") >= 0;
+    }
+
+    public static bool LevelExists(int world, int level)
+    {
+        return 0 <= world && world < _saveProgress.Length && 
+               0 <= level && level < _saveProgress[world].Length;
+    }
 }

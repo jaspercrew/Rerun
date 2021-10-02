@@ -1,5 +1,4 @@
-﻿using NUnit.Framework;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PortalController : MonoBehaviour
@@ -112,9 +111,9 @@ public class PortalController : MonoBehaviour
                 string sceneName = SceneManager.GetActiveScene().name;
                 string[] parts = sceneName.Split(' ');
                 string[] levelParts = parts[1].Split('-');
-                int world = int.Parse(levelParts[0]);
-                int level = int.Parse(levelParts[1]);
-                SaveScript.UpdateLevel(world, level);
+                int worldNum = int.Parse(levelParts[0]);
+                int levelNum = int.Parse(levelParts[1]);
+                SaveScript.UpdateLevel(worldNum - 1, levelNum - 1);
             }
             catch
             {
