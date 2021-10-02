@@ -6,10 +6,7 @@ using UnityEngine;
 
 public static class SaveScript {
     
-    private const int NumWorlds = 8;
-    private const int LevelsPerWorld = 4;
-
-    private static bool[][] _saveProgress = new bool[NumWorlds][];
+    private static bool[][] _saveProgress = new bool[Constants.NumWorlds][];
     private static float[] _settings = new float[2];
     private static BinaryFormatter _bf = new BinaryFormatter();
 
@@ -22,7 +19,7 @@ public static class SaveScript {
     {
         for (int i = 0; i < _saveProgress.Length; i++)
         {
-            _saveProgress[i] = new bool[LevelsPerWorld];
+            _saveProgress[i] = new bool[Constants.LevelsPerWorld];
         }
 
         Debug.Log("loading save and settings");

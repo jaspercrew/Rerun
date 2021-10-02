@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using NUnit.Framework;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PortalController : MonoBehaviour
@@ -102,6 +103,25 @@ public class PortalController : MonoBehaviour
         StartCoroutine(_runsLeft > 0 ?
                 _player.GetComponent<RewindManager>().DelayedRewind(.18f) :
                 _player.GetComponent<RewindManager>().Disappear(.18f));
+
+
+        if (_runsLeft == 0)
+        {
+            try
+            {
+                string sceneName = SceneManager.GetActiveScene().name;
+                string[] parts = sceneName.Split(' ');
+                string[] levelParts = parts[1].Split('-');
+                int world = int.Parse(levelParts[0]);
+                int level = int.Parse(levelParts[1]);
+                SaveScript.UpdateLevel(world, level);
+            }
+            catch
+            {
+                Debug.LogError("ERROR: couldn't save level completion because " +
+                               "scene name couldn't be parsed");
+            }
+        }
 
         PlaceStars();
     }
