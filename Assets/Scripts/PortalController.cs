@@ -103,6 +103,25 @@ public class PortalController : MonoBehaviour
                 _player.GetComponent<RewindManager>().DelayedRewind(.18f) :
                 _player.GetComponent<RewindManager>().Disappear(.18f));
 
+
+        if (_runsLeft == 0)
+        {
+            try
+            {
+                string sceneName = SceneManager.GetActiveScene().name;
+                string[] parts = sceneName.Split(' ');
+                string[] levelParts = parts[1].Split('-');
+                int worldNum = int.Parse(levelParts[0]);
+                int levelNum = int.Parse(levelParts[1]);
+                SaveScript.UpdateLevel(worldNum - 1, levelNum - 1);
+            }
+            catch
+            {
+                Debug.LogError("ERROR: couldn't save level completion because " +
+                               "scene name couldn't be parsed");
+            }
+        }
+
         PlaceStars();
     }
 

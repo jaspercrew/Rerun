@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -12,28 +13,7 @@ public class GameManager : MonoBehaviour
         _renderer = fg ? fg.GetComponent<SpriteRenderer>() : null;
         
         SaveScript.Load();
-
     }
-
-    // Update is called once per frame
-    // private void Update()
-    // {
-    //     if (Input.GetMouseButtonDown(1))
-    //     {
-    //         Debug.Log("m1");
-    //         ScreenCapture.CaptureScreenshot(Application.dataPath + 
-    //                                         "/screenshots/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")
-    //                                         + ".png");
-    //         UnityEditor.AssetDatabase.Refresh();
-    //     }
-    //     
-    //     if (Input.GetKeyDown("t"))
-    //     {
-    //         Debug.Log("t");
-    //         StartCoroutine(FindObjectOfType<SpawnScript>().SpawnCharacter());
-    //     }
-    //     
-    // }
     public void GamePause() {
         Time.timeScale = 0;
         if (_renderer)
@@ -66,11 +46,6 @@ public class GameManager : MonoBehaviour
 #endif
     }
 
-    public void LoadLevel(int i)
-    {
-        SceneManager.LoadScene(i);
-    }
-    
     public void RestartLevel() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
@@ -78,5 +53,10 @@ public class GameManager : MonoBehaviour
     public void SaveGameAndSettings()
     {
         SaveScript.Save();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGameAndSettings();
     }
 }

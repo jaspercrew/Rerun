@@ -43,62 +43,62 @@ public class DegenController : MonoBehaviour
     //     }
     // }
     
-    private IEnumerator BreakOverTime(float time) {
-        // yield return new WaitForSeconds(time);
-        //
-        // if (_alive)
-        // {
-        //     Kill();
-        //     _alive = false;
-        // }
-        _state = DegenState.Breaking;
-        
-        GameObject tempYellow = new GameObject("tempDegen")
-        {
-            transform =
-            {
-                position = transform.position + Vector3.forward,
-                localScale = transform.localScale
-            }
-        };
-        // tempYellow.transform.position = this.transform.position;
-        // tempYellow.transform.position += Vector3.forward; // push into screen
-        // tempYellow.transform.localScale = this.transform.localScale;
-        SpriteRenderer sr = tempYellow.AddComponent<SpriteRenderer>();
-        
-        UnityEditorInternal.ComponentUtility.CopyComponent(this.GetComponent<SpriteRenderer>());
-        UnityEditorInternal.ComponentUtility.PasteComponentValues(sr);
-        
-        Color c = Constants.RegenColor;
-        c.a = Constants.DisabledOpacity;
-        sr.color = c;
-
-        const int updates = 100;
-
-        for (float perc = 0; perc < 1; perc += 1f / updates)
-        {
-            float newHeight = _originalScale.y * (1 - perc);
-            float newY = _originalPos.y + perc * _originalScale.y / 2;
-            transform.localScale = new Vector3(_originalScale.x, newHeight, _originalScale.z);
-            transform.position = new Vector3(_originalPos.x, newY, _originalPos.z);
-            yield return new WaitForSeconds(time / updates);
-        }
-
-        Destroy(tempYellow);
-
-        _state = DegenState.Broken;
-        transform.localScale = _originalScale;
-        transform.position = _originalPos;
-        _renderer.color = c;
-        _collider.isTrigger = true;
-    }
+    // private IEnumerator BreakOverTime(float time) {
+    //     // yield return new WaitForSeconds(time);
+    //     //
+    //     // if (_alive)
+    //     // {
+    //     //     Kill();
+    //     //     _alive = false;
+    //     // }
+    //     _state = DegenState.Breaking;
+    //     
+    //     GameObject tempYellow = new GameObject("tempDegen")
+    //     {
+    //         transform =
+    //         {
+    //             position = transform.position + Vector3.forward,
+    //             localScale = transform.localScale
+    //         }
+    //     };
+    //     // tempYellow.transform.position = this.transform.position;
+    //     // tempYellow.transform.position += Vector3.forward; // push into screen
+    //     // tempYellow.transform.localScale = this.transform.localScale;
+    //     SpriteRenderer sr = tempYellow.AddComponent<SpriteRenderer>();
+    //     
+    //     UnityEditorInternal.ComponentUtility.CopyComponent(this.GetComponent<SpriteRenderer>());
+    //     UnityEditorInternal.ComponentUtility.PasteComponentValues(sr);
+    //     
+    //     Color c = Constants.RegenColor;
+    //     c.a = Constants.DisabledOpacity;
+    //     sr.color = c;
+    //
+    //     const int updates = 100;
+    //
+    //     for (float perc = 0; perc < 1; perc += 1f / updates)
+    //     {
+    //         float newHeight = _originalScale.y * (1 - perc);
+    //         float newY = _originalPos.y + perc * _originalScale.y / 2;
+    //         transform.localScale = new Vector3(_originalScale.x, newHeight, _originalScale.z);
+    //         transform.position = new Vector3(_originalPos.x, newY, _originalPos.z);
+    //         yield return new WaitForSeconds(time / updates);
+    //     }
+    //
+    //     Destroy(tempYellow);
+    //
+    //     _state = DegenState.Broken;
+    //     transform.localScale = _originalScale;
+    //     transform.position = _originalPos;
+    //     _renderer.color = c;
+    //     _collider.isTrigger = true;
+    // }
     
     // this triggers when the player hits the block
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (!other.collider.CompareTag("Player")) return;
         if (_state != DegenState.Fragile) return;
-        StartCoroutine(BreakOverTime(Constants.BreakingTime));
+        // StartCoroutine(BreakOverTime(Constants.BreakingTime));
         _state = DegenState.Breaking;
     }
 
