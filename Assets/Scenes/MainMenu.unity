@@ -1103,13 +1103,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 616615414}
-  m_LocalRotation: {x: 0, y: -0, z: 0.89955777, w: -0.43680182}
+  m_LocalRotation: {x: 0, y: -0, z: 0.8870109, w: -0.46174863}
   m_LocalPosition: {x: -29.77, y: 18.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 231.8}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 235}
 --- !u!43 &624467175
 Mesh:
   m_ObjectHideFlags: 0
@@ -3399,7 +3399,7 @@ MonoBehaviour:
 
 
 
-    UI DESIGN + VISUAL EFFECTS'
+    UI DESIGN + POSTPROCESSING'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
