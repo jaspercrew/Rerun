@@ -97,7 +97,13 @@ public class CharController: MonoBehaviour {
 
             if (IsOnGravityPlatform())
             {
+                
                 _rigidbody.gravityScale *= -1;
+                
+                int dir = _rigidbody.gravityScale < 0 ? -1 : 1;
+                _rigidbody.AddForce(new Vector2(0, -dir * jumpForce), ForceMode2D.Impulse);
+                _justJumped = true;
+                _jumpBufferCount = 0;
             }
             else
             {
