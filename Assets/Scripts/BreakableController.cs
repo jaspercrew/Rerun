@@ -63,8 +63,13 @@ public class BreakableController : MonoBehaviour
     
     private void OnCollisionExit2D(Collision2D other)
     {
+        print(other.collider);
         if (!other.collider.CompareTag("Player")) return;
-        transform.localScale = Vector3.zero;
+
+
+        if (other.otherCollider is BoxCollider2D) {
+            transform.localScale = Vector3.zero;
+        }
     }
 
 }

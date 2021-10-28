@@ -27,7 +27,7 @@ public class CharController: MonoBehaviour {
     // private RewindManager _rewindManager;
     public float xDir = 2;
 
-    private bool _justJumped;
+    private bool _justJumped = true;
 
     private readonly HashSet<Collider2D> _colliding = new HashSet<Collider2D>();
 
@@ -57,7 +57,9 @@ public class CharController: MonoBehaviour {
         float move = Input.GetAxisRaw("Horizontal");
         if (isMovementEnabled && (_rigidbody.velocity.x == 0 || IsGrounded()))
         {
+            //move left and right
             transform.position += new Vector3(move * speed * Time.deltaTime, 0, 0);
+            //_rigidbody.MovePosition(transform.position + (new Vector3(move, 0, 0)* speed * Time.deltaTime));
         }
         
         if (Math.Abs(xDir - move) > 0.01f && IsGrounded() && move != 0) {
@@ -76,6 +78,7 @@ public class CharController: MonoBehaviour {
 
     private void Update()
     {
+        print(_colliding.Count);
         
         // jump buffer code
         if (Input.GetButtonDown("Jump")) {
