@@ -14,6 +14,14 @@ public class GameManager : MonoBehaviour
         
         SaveScript.Load();
     }
+
+    private void Update() {
+        if (Input.GetKeyDown("r")) {
+            RestartLevel();
+        }
+        
+        
+    }
     public void GamePause() {
         Time.timeScale = 0;
         if (_renderer)

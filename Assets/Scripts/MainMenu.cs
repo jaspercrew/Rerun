@@ -107,8 +107,8 @@ public class MainMenu : MonoBehaviour
         playButton.onClick.AddListener(() => gameObject.SetActive(false));
     }
 
-    private static void LoadLevel(int worldNum, int levelNum)
-    {
+    private static void LoadLevel(int worldNum, int levelNum) {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("Level " + worldNum + "-" + levelNum);
     }
 }
